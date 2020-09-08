@@ -3,6 +3,8 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\CategoryResource;
+use App\Category;
 
 class SubcategoryResource extends JsonResource
 {
@@ -18,7 +20,7 @@ class SubcategoryResource extends JsonResource
         return [
             'subcategory_id' => $this->id,
             'subcategory_name' => $this->name,
-            'categoryname' => $this->category_id
+            'category' => new CategoryResource(Category::find($this->category_id)),
         ];
     }
 }
